@@ -72,20 +72,11 @@ eval "$(pyenv init -)"
 
 export LD_LIBRARY_PATH=/home/cyberfather/.local/lib/arch-mojo:$LD_LIBRARY_PATH
 
-# bun completions
 [ -s "/home/cyberfather/.bun/_bun" ] && source "/home/cyberfather/.bun/_bun"
 
-# pnpm
 export PNPM_HOME="/home/cyberfather/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-
-# The next line updates PATH for CLI.
-if [ -f '/home/cyberfather/yandex-cloud/path.bash.inc' ]; then source '/home/cyberfather/yandex-cloud/path.bash.inc'; fi
-
-# The next line enables shell command completion for yc.
-if [ -f '/home/cyberfather/yandex-cloud/completion.zsh.inc' ]; then source '/home/cyberfather/yandex-cloud/completion.zsh.inc'; fi
 
