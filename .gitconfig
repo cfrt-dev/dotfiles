@@ -1,0 +1,22 @@
+[user]
+	email = maks12ate@gmail.com
+	name = CyberFather
+	signingkey = ~/.ssh/git-signing-key.pub
+[init]
+	defaultBranch = master
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    gr = config --get remote.origin.url
+[pull]
+	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[advice]
+	detachedHead = false
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
