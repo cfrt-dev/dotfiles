@@ -42,7 +42,7 @@ vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 vim.keymap.set("n", "<leader>gt", "<cmd>GoAddTag<CR>")
-vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>")
+vim.keymap.set("n", "<leader>T", "<cmd>tabnew<CR>")
 
 vim.api.nvim_set_keymap("n", "<C-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", ":resize -2<CR>", { noremap = true, silent = true })

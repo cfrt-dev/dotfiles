@@ -1,0 +1,16 @@
+#!/bin/bash
+
+hosts=$(grep -E '^Host ' ~/.ssh/config | awk '{print $2}' | grep -v '[*?]' | sort)
+selected_host=$(printf "%s" "$hosts" | fzf --height 40% --reverse --prompt="SSH Host: ")
+
+[[ -z $selected_host ]] && exit 0
+
+session_name="ssh-${selected_host}"
+
+if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new-session -d -s "$session_name" "ssh -t $selected_host"
+    tmux set-option -t "$session_name" @session-type "ssh"
+    tmux set-option -t "$session_name" @ssh-host "$selected_host"
+fi
+
+tmux switch-client -t "$session_name"

@@ -55,6 +55,7 @@ alias py=python
 alias finish="source /opt/finish.sh"
 alias bat="bat --plain "
 alias сдуфк=clear
+alias yz=yazi
 
 source $ZSH/oh-my-zsh.sh
 

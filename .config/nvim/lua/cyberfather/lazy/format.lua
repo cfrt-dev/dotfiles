@@ -29,20 +29,6 @@ return {
 			}
 		end
 
-		local js = function()
-			return {
-				exe = "prettier",
-				args = {
-					"--tab-width",
-					"4",
-					"--stdin-filepath",
-					util.escape_path(util.get_current_buffer_file_path()),
-				},
-				stdin = true,
-				try_node_modules = true,
-			}
-		end
-
 		require("formatter").setup({
 			logging = true,
 			log_level = vim.log.levels.WARN,
@@ -54,27 +40,18 @@ return {
 				sh = require("formatter.filetypes.sh").shfmt,
 				lua = require("formatter.filetypes.lua").stylua,
 				python = require("formatter.filetypes.python").ruff,
-				svelte = require("formatter.filetypes.svelte").prettier,
-				typescriptreact = js,
-				typescript = js,
-				javascript = js,
+				svelte = require("formatter.defaults.biome"),
+				typescriptreact = require("formatter.defaults.biome"),
+				typescript = require("formatter.defaults.biome"),
+				javascript = require("formatter.defaults.biome"),
 				tex = require("formatter.defaults.latexindent"),
 				yaml = yaml,
-				html = require("formatter.filetypes.html").prettier,
-				css = require("formatter.filetypes.css").prettier,
+				html = require("formatter.defaults.biome"),
+				css = require("formatter.defaults.biome"),
 				proto = require("formatter.filetypes.proto").buf_format,
 				ruby = require("formatter.filetypes.ruby").rubocop,
-				json = function()
-					return {
-						exe = "prettier",
-						args = {
-							"--stdin-filepath",
-							util.escape_path(util.get_current_buffer_file_path()),
-						},
-						stdin = true,
-						try_node_modules = true,
-					}
-				end,
+				json = require("formatter.defaults.biome"),
+				jsonc = require("formatter.defaults.biome"),
 			},
 		})
 

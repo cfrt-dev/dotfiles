@@ -1,0 +1,6 @@
+#!/bin/bash
+current=$(tmux display-message -p '#{session_name}')
+[[ $(tmux show-option -t "$current" -qv @session-type) != "ssh" ]] && exit 0
+
+tmux switch-client -l
+tmux kill-session -t "$current"
