@@ -12,7 +12,6 @@ addToPathFront() {
 
 export EDITOR=nvim
 export ZSH="$HOME/.oh-my-zsh"
-export PYENV_ROOT="$HOME/.pyenv"
 export WEBKIT_DISABLE_DMABUF_RENDERER=1
 export DOTNET_ROOT="$HOME/software/libraries/dotnet"
 export VIRSH_DEFAULT_CONNECT_URI=qemu:///system
@@ -67,8 +66,6 @@ done
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' 'tmux-sessionizer\n'
 
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 
 export LD_LIBRARY_PATH=/home/cyberfather/.local/lib/arch-mojo:$LD_LIBRARY_PATH
