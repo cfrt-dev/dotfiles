@@ -10,6 +10,7 @@ addToPathFront() {
     fi
 }
 
+export MANPAGER=nvim
 export EDITOR=nvim
 export ZSH="$HOME/.oh-my-zsh"
 export WEBKIT_DISABLE_DMABUF_RENDERER=1

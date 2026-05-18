@@ -14,4 +14,5 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = "cyberfather.lazy",
 	change_detection = { notify = false },
+	install = { colorscheme = { "rose-pine" } },
 })

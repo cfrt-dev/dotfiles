@@ -1,3 +1,4 @@
+vim.opt.conceallevel = 2
 vim.opt.guicursor = ""
 vim.opt.ignorecase = true
 

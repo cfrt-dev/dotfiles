@@ -1,22 +1,49 @@
 [user]
 	email = maks12ate@gmail.com
-	name = CyberFather
+	name = Maksim Nikitin
 	signingkey = ~/.ssh/git-signing-key.pub
+
+[commit]
+	gpgsign = true
+    verbose = true
+
+[core]
+    autocrlf = input
+    compression = 9
+    fsync = none
+    whitespace = error
+    preloadindex = true
+
 [init]
 	defaultBranch = master
+
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     gr = config --get remote.origin.url
+
 [pull]
 	rebase = true
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [advice]
 	detachedHead = false
-[commit]
-	gpgsign = true
+
 [gpg]
 	format = ssh
+
+[url "git@github.com"]
+    insteadOf = "gh"
+
+[url "git@github.com:cfrt"]
+    insteadOf = "cf"
+
+[url "git@tech-team.aciso.ru:"]
+    insteadOf = "aciso"
+
+; [credential]
+; 	helper = /home/cfrt/.local/bin/rbw-git-credentials

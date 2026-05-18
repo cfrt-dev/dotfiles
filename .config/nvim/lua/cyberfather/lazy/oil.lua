@@ -5,6 +5,11 @@ return {
 	config = function()
 		require("oil").setup({
 			default_file_explorer = true,
+			columns = {
+				"icon",
+				"size",
+				"permissions",
+			},
 			keymaps = {
 				["g?"] = { "actions.show_help", mode = "n" },
 				["<CR>"] = "actions.select",

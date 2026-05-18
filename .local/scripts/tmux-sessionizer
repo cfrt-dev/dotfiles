@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find /home ~/ ~/personal ~/software ~/software/git ~/software/libraries ~/ctf ~/ctf/events ~/ctf/training /drive /drive/iso /drive/books -mindepth 1 -maxdepth 1 ! -name ".*" -type d,l | fzf)
+    selected=$(find /home ~/ ~/personal ~/ctf-devel ~/software ~/software/git ~/software/libraries /mnt/storage /mnt/storage/iso /mnt/storage/books /mnt/storage/media -mindepth 1 -maxdepth 1 ! -name ".*" -type d,l | fzf)
 fi
 
 if [[ -z $selected ]]; then

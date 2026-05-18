@@ -29,11 +29,26 @@ return {
 			}
 		end
 
+		local typst = function()
+			return {
+				exe = "typstyle",
+				stdin = true,
+			}
+		end
+
+		local rust = function()
+			return {
+				exe = "rustfmt",
+				args = { "--edition 2024" },
+				stdin = true,
+			}
+		end
+
 		require("formatter").setup({
 			logging = true,
 			log_level = vim.log.levels.WARN,
 			filetype = {
-				rust = require("formatter.filetypes.rust").rustfmt,
+				rust = rust,
 				cpp = c,
 				c = c,
 				kotlin = require("formatter.filetypes.kotlin").ktlint,
@@ -46,12 +61,13 @@ return {
 				javascript = require("formatter.defaults.biome"),
 				tex = require("formatter.defaults.latexindent"),
 				yaml = yaml,
-				html = require("formatter.defaults.biome"),
+				html = require("formatter.defaults.prettier"),
 				css = require("formatter.defaults.biome"),
-				proto = require("formatter.filetypes.proto").buf_format,
+				-- proto = require("formatter.filetypes.proto").buf_format,
 				ruby = require("formatter.filetypes.ruby").rubocop,
 				json = require("formatter.defaults.biome"),
 				jsonc = require("formatter.defaults.biome"),
+				typst = typst,
 			},
 		})
 

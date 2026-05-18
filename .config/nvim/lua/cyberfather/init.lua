@@ -73,52 +73,52 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<cr>")
 -- Lua function to manually match YAML content with Dockerfile highlights
 -- Prerequisite: Your Neovim setup is already configured with Tree-sitter and the necessary parsers.
 
-local utils = require("nvim-treesitter.ts_utils")
+-- local utils = require("nvim-treesitter.ts_utils")
 
-local function highlight_dockerfile()
-	-- Fetch current buffer and ensure it's a YAML file.
-	local bufnr = vim.api.nvim_get_current_buf()
-
-	-- Get the tree-sitter parser for YAML
-	local parser = vim.treesitter.get_parser(bufnr, "yaml")
-	local tree = parser:parse()[1]
-	local lang_tree = tree:root()
-
-	-- Traversing the tree to find the 'content' node
-	local function find_content_node(node)
-		for child in node:iter_children() do
-			if child:type() == "block_node" then
-				for subchild in child:iter_children() do
-					if subchild:type() == "block_mapping_pair" then
-						local key_node = subchild:named_child(0)
-						if key_node and utils.get_node_text(key_node, bufnr)[1] == "content" then
-							return subchild:named_child(1)
-						end
-					end
-				end
-			end
-		end
-	end
-
-	-- Get the content node
-	local content_node = find_content_node(lang_tree)
-
-	-- If we found the content node, apply Dockerfile highlighting
-	if content_node then
-		local start_row, start_col, end_row, end_col = content_node:range()
-
-		-- Set tree-sitter Dockerfile highlighting over the specified range
-		vim.treesitter.highlighter.new(bufnr, lang_tree, { "dockerfile" }, {
-			start_row = start_row,
-			start_col = start_col,
-			end_row = end_row,
-			end_col = end_col,
-		})
-	end
-end
+-- local function highlight_dockerfile()
+-- 	-- Fetch current buffer and ensure it's a YAML file.
+-- 	local bufnr = vim.api.nvim_get_current_buf()
+--
+-- 	-- Get the tree-sitter parser for YAML
+-- 	local parser = vim.treesitter.get_parser(bufnr, "yaml")
+-- 	local tree = parser:parse()[1]
+-- 	local lang_tree = tree:root()
+--
+-- 	-- Traversing the tree to find the 'content' node
+-- 	local function find_content_node(node)
+-- 		for child in node:iter_children() do
+-- 			if child:type() == "block_node" then
+-- 				for subchild in child:iter_children() do
+-- 					if subchild:type() == "block_mapping_pair" then
+-- 						local key_node = subchild:named_child(0)
+-- 						if key_node and utils.get_node_text(key_node, bufnr)[1] == "content" then
+-- 							return subchild:named_child(1)
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+--
+-- 	-- Get the content node
+-- 	local content_node = find_content_node(lang_tree)
+--
+-- 	-- If we found the content node, apply Dockerfile highlighting
+-- 	if content_node then
+-- 		local start_row, start_col, end_row, end_col = content_node:range()
+--
+-- 		-- Set tree-sitter Dockerfile highlighting over the specified range
+-- 		vim.treesitter.highlighter.new(bufnr, lang_tree, { "dockerfile" }, {
+-- 			start_row = start_row,
+-- 			start_col = start_col,
+-- 			end_row = end_row,
+-- 			end_col = end_col,
+-- 		})
+-- 	end
+-- end
 
 -- Command to invoke the function
-vim.api.nvim_create_user_command("HighlightDockerfile", highlight_dockerfile, {})
+-- vim.api.nvim_create_user_command("HighlightDockerfile", highlight_dockerfile, {})
 
 -- Automatically highlight Dockerfile when opening a YAML file
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -160,3 +160,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.expandtab = true
 	end,
 })
+
+vim.lsp.inlay_hint.enable(false)
