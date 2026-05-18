@@ -438,7 +438,7 @@ require("conform").setup({
 		html = { "biome" },
 		javascript = { "biome" },
 		javascriptreact = { "biome" },
-		json = { "biome" },
+		json = { "jq" },
 		lua = { "stylua" },
 		odin = { "odin" },
 		python = { "ruff_format" },
