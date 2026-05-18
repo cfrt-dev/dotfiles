@@ -1,3 +1,5 @@
+;; extends
+
 (macro_invocation
     (scoped_identifier
         path: (identifier) @_path (#eq? @_path "sqlx")
@@ -8,4 +10,3 @@
     )
     (#set! injection.language "sql")
 )
-
