@@ -19,6 +19,9 @@ vim.g.no_plugin_maps = true
 vim.opt.scrolloff = 8
 
 vim.pack.add({
+	{ src = "https://github.com/tpope/vim-dadbod" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
+	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" },
 	{ src = "https://github.com/cfrt-dev/rfc.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mosheavni/yaml-companion.nvim" },
@@ -88,26 +91,27 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {
-		"ols",
 		"buf",
-		"yamlls",
-		"lua_ls",
-		"cssls",
-		"svelte",
-		"tinymist",
-		"clangd",
 		"clang-format",
-		"ruff",
+		"clangd",
+		"cssls",
 		"docker_compose_language_service",
-		"powershell_es",
-		"hlint",
-		"tailwindcss",
-		"ts_ls",
-		"gopls",
 		"dockerls",
 		"emmet_language_server",
 		"emmet_ls",
+		"gopls",
+		"hlint",
+		"lua_ls",
+		"ols",
+		"powershell_es",
 		"pyright",
+		"ruff",
+		"svelte",
+		"tailwindcss",
+		"tinymist",
+		"ts_ls",
+		"yamlls",
+		"sqruff",
 	},
 })
 
@@ -366,6 +370,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "vim-dadbod-completion" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -418,6 +423,9 @@ map("n", "]t", function()
 	trouble.previous({ skip_groups = true, jump = true })
 end)
 
+local nvim_config_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+local default_sqruff_config = nvim_config_dir .. "/.sqruff"
+
 require("conform").setup({
 	format_on_save = {
 		timeout_ms = 5000,
@@ -432,17 +440,33 @@ require("conform").setup({
 		javascriptreact = { "biome" },
 		json = { "biome" },
 		lua = { "stylua" },
+		odin = { "odin" },
 		python = { "ruff_format" },
 		sh = { "shfmt" },
 		typescript = { "biome" },
 		typescriptreact = { "biome" },
-		odin = { "odin" },
+		sql = { "sqruff" },
 		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace" },
 	},
 	formatters = {
 		["clang-format"] = {
 			prepend_args = { "-style=file", "-fallback-style=LLVM" },
+		},
+		sqruff = {
+			exit_codes = { 0, 1 },
+			args = function(_, ctx)
+				local project_config = vim.fs.find(".sqruff", {
+					path = vim.fs.dirname(ctx.filename),
+					upward = true,
+				})[1]
+
+				if project_config then
+					return { "fix", "$FILENAME" }
+				end
+
+				return { "--config", default_sqruff_config, "fix", "$FILENAME" }
+			end,
 		},
 	},
 })
@@ -510,3 +534,32 @@ end)
 
 require("rfc").setup()
 map("n", "<leader>rf", "<cmd>RfcSearch<cr>")
+
+vim.g.db_ui_use_nerd_fonts = 1
+
+vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<CR>", {
+	desc = "Toggle Dadbod UI",
+})
+
+local function load_dadbod_ui()
+	vim.cmd.packadd("vim-dadbod")
+	vim.cmd.packadd("vim-dadbod-ui")
+	vim.cmd.packadd("vim-dadbod-completion")
+end
+
+for _, cmd in ipairs({
+	"DBUI",
+	"DBUIToggle",
+	"DBUIAddConnection",
+	"DBUIFindBuffer",
+}) do
+	vim.api.nvim_create_user_command(cmd, function(opts)
+		load_dadbod_ui()
+
+		vim.cmd(cmd .. " " .. table.concat(opts.fargs, " "))
+	end, {
+		nargs = "*",
+		complete = "file",
+	})
+end
+vim.g.db_ui_disable_info_notifications = 1
