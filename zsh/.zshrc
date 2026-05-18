@@ -45,6 +45,10 @@ bindkey '^E' end-of-line
 bindkey '^R' history-incremental-search-backward
 bindkey '^ ' autosuggest-accept
 bindkey -s '^F' 'tmux-sessionizer\n'
+bindkey $'\e[1;5D' backward-word
+bindkey $'\e[1;5C' forward-word
+bindkey $'\e[5D' backward-word
+bindkey $'\e[5C' forward-word
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
