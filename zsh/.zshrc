@@ -31,11 +31,10 @@ fi
 
 # Enable interactive completion menu selection
 zstyle ':completion:*' menu select
-
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-[ -s "/home/cfrt/.bun/_bun" ] && source "/home/cfrt/.bun/_bun"
-[ -s "/home/cfrt/.cargo/env" ] && source "/home/cfrt/.cargo/env"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/plugins.zsh"
