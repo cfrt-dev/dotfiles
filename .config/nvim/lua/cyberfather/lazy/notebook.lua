@@ -1,3 +1,0 @@
-return {
-	"meatballs/notebook.nvim",
-}
