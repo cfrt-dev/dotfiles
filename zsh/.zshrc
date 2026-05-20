@@ -15,6 +15,9 @@ setopt AUTOCD
 setopt NOBEEP
 setopt NUMERIC_GLOB_SORT
 
+autoload -U select-word-style
+select-word-style bash
+
 autoload -Uz compinit
 ZCD=${ZDOTDIR:-$HOME}/.zcompdump
 

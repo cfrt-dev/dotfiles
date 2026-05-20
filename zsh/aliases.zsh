@@ -1,5 +1,7 @@
 alias gst="git status"
 
+alias feh="feh --fullscreen"
+
 alias ls="ls --color=always"
 alias l="ls -lh"
 alias ll="ls -lah"
