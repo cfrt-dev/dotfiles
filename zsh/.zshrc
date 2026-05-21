@@ -32,12 +32,18 @@ fi
   [[ -s $ZCD && (! -s ${ZCD}.zwc || $ZCD -nt ${ZCD}.zwc) ]] && zcompile $ZCD
 } &!
 
+
 # Enable interactive completion menu selection
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+path=(${path:#$HOME/.local/bin})
+path=(${path:#/opt/homebrew/bin})
+path=("$HOME/.local/bin" "/opt/homebrew/bin" $path)
+export PATH
 
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/plugins.zsh"
@@ -56,5 +62,7 @@ bindkey $'\e[5C' forward-word
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 eval "$(starship init zsh)"
+
+zle_highlight+=(paste:none)
 
 # zprof
