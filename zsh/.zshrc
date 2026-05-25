@@ -60,6 +60,7 @@ bindkey $'\e[5D' backward-word
 bindkey $'\e[5C' forward-word
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export LIBVIRT_DEFAULT_URI=qemu:///system
 
 eval "$(starship init zsh)"
 

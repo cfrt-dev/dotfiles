@@ -1,9 +1,29 @@
 #!/usr/bin/env bash
 
+folders=(
+    /Users
+    /home
+    ~
+    ~/Documents
+    ~/personal
+    ~/ctf-devel
+    ~/software
+    ~/software/git
+    ~/software/libraries
+    /mnt/storage
+    /mnt/storage/iso
+    /mnt/storage/books
+    /mnt/storage/media
+)
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find /Users /home ~/wb ~/ ~/personal ~/ctf-devel ~/software ~/software/git ~/software/libraries /mnt/storage /mnt/storage/iso /mnt/storage/books /mnt/storage/media -mindepth 1 -maxdepth 1 ! -name ".*" -type d,l 2>/dev/null | grep -v "/Users/Shared" | fzf)
+    selected=$(
+        find "${folders[@]}" -mindepth 1 -maxdepth 1 ! -name ".*" -type d,l 2>/dev/null |
+            grep -v "/Users/Shared" |
+            fzf
+    )
 fi
 
 if [[ -z $selected ]]; then

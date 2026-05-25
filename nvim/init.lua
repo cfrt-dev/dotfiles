@@ -167,6 +167,14 @@ require("oil").setup({
 		["gx"] = "actions.open_external",
 		["g."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
+		["gh"] = {
+			desc = "Open home directory",
+			callback = function()
+				require("oil").open(vim.fn.expand("~"))
+			end,
+			mode = "n",
+		},
+
 		["gd"] = {
 			desc = "Toggle file detail view",
 			callback = function()
@@ -446,7 +454,6 @@ require("conform").setup({
 		typescript = { "biome" },
 		typescriptreact = { "biome" },
 		sql = { "sqruff" },
-		["*"] = { "codespell" },
 		["_"] = { "trim_whitespace" },
 	},
 	formatters = {
