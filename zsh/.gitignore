@@ -1,3 +1,4 @@
 plugins
 .zcompdump
 .zcompdump.zwc
+.zcompcache/

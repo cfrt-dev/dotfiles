@@ -6,6 +6,7 @@ folders=(
     ~
     ~/Documents
     ~/personal
+    ~/wb
     ~/ctf-devel
     ~/software
     ~/software/git
