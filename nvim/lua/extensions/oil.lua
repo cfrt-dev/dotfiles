@@ -82,24 +82,17 @@ local function oil_archive_selected()
 
 	local formats = {
 		{
-			name = "tar.gz",
-			extension = "tar.gz",
-			command = function(archive_name)
-				return { "tar", "-czf", archive_name, "--" }
-			end,
-		},
-		{
-			name = "7z",
-			extension = "7z",
-			command = function(archive_name)
-				return { "7z", "a", archive_name, "--" }
-			end,
-		},
-		{
 			name = "zip",
 			extension = "zip",
 			command = function(archive_name)
 				return { "zip", "-r", archive_name, "--" }
+			end,
+		},
+		{
+			name = "tar.gz",
+			extension = "tar.gz",
+			command = function(archive_name)
+				return { "tar", "-czf", archive_name, "--" }
 			end,
 		},
 		{
@@ -114,6 +107,13 @@ local function oil_archive_selected()
 			extension = "tar.xz",
 			command = function(archive_name)
 				return { "tar", "-cJf", archive_name, "--" }
+			end,
+		},
+		{
+			name = "7z",
+			extension = "7z",
+			command = function(archive_name)
+				return { "7z", "a", archive_name, "--" }
 			end,
 		},
 	}

@@ -28,6 +28,10 @@
       "rev": "1bc17e3e42ea3c46b33c0bbad6a880792692a1b3",
       "src": "https://github.com/theprimeagen/harpoon"
     },
+    "license.nvim": {
+      "rev": "fb6c9d40fa27c3ffb02f859460d14aaeaac0d77c",
+      "src": "https://github.com/cfrt-dev/license.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "0c2823e0418f3d9230ff8b201c976e84de1cb401",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -136,6 +140,10 @@
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-loremipsum": {
+      "rev": "56c558a065124e7c21d4ee0e8fde5af83cbffe83",
+      "src": "https://github.com/wolandark/vim-loremipsum.git"
     },
     "vim-surround": {
       "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",

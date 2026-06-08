@@ -1,8 +1,10 @@
 vim.pack.add({
+	{ src = "https://github.com/wolandark/vim-loremipsum.git" },
 	{ src = "https://github.com/tpope/vim-dadbod" },
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-ui" },
 	{ src = "https://github.com/cfrt-dev/rfc.nvim" },
+	{ src = "https://github.com/cfrt-dev/license.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mosheavni/yaml-companion.nvim" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
