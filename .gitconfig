@@ -45,10 +45,6 @@
 [url "git@tech-team.aciso.ru:"]
     insteadOf = "aciso"
 
-; [credential]
-; 	helper = /home/cfrt/.local/bin/rbw-git-credentials
-[coderabbit]
-	machineId = cli/bb69486b65e54db99cef9797d20817fa
 [push]
 	autoSetupRemote = true
 	default = current
