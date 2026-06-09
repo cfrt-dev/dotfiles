@@ -12,6 +12,10 @@
       "rev": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90",
       "src": "https://github.com/saadparwaiz1/cmp_luasnip"
     },
+    "compile-mode.nvim": {
+      "rev": "dd3e952076a33faba0a55b04b2b73945832c0527",
+      "src": "https://github.com/ej-shafran/compile-mode.nvim"
+    },
     "conform.nvim": {
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"

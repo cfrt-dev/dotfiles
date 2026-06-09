@@ -1,4 +1,5 @@
 vim.pack.add({
+	{ src = "https://github.com/ej-shafran/compile-mode.nvim" },
 	{ src = "https://github.com/wolandark/vim-loremipsum.git" },
 	{ src = "https://github.com/tpope/vim-dadbod" },
 	{ src = "https://github.com/kristijanhusak/vim-dadbod-completion" },
