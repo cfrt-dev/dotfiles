@@ -1,18 +1,5 @@
 local map = vim.keymap.set
 
-vim.lsp.config("clangd", {
-	cmd = {
-		"clangd",
-		"--query-driver=/usr/bin/c++,/usr/bin/g++,/usr/bin/clang++,/usr/bin/clang++",
-	},
-	init_options = {
-		fallbackFlags = {
-			"-std=c++23",
-			"-Iinclude",
-		},
-	},
-})
-
 vim.lsp.enable({
 	"ols",
 	"lua_ls",
