@@ -1,4 +1,23 @@
 vim.keymap.set("n", "<leader>co", "<cmd>botright Compile<cr>")
+vim.keymap.set("n", "<leader>oc", function()
+	local bufnr = vim.fn.bufnr("*compilation*")
+
+	if bufnr == -1 then
+		vim.notify("No compilation buffer found", vim.log.levels.WARN)
+		return
+	end
+
+	local wins = vim.fn.win_findbuf(bufnr)
+
+	if #wins > 0 then
+		for _, win in ipairs(wins) do
+			vim.api.nvim_win_close(win, false)
+		end
+		return
+	end
+
+	vim.cmd("botright sbuffer " .. bufnr)
+end)
 
 ---@module "compile-mode"
 ---@type CompileModeOpts

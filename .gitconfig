@@ -13,6 +13,7 @@
     fsync = none
     whitespace = error
     preloadindex = true
+	quotePath = false
 
 [init]
 	defaultBranch = master
