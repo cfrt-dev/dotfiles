@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 vim.lsp.enable({
+	"biome",
 	"ols",
 	"lua_ls",
 	"cssls",
@@ -24,6 +25,13 @@ vim.lsp.enable({
 local yaml_cfg = require("extensions.yaml_companion")
 vim.lsp.config("yamlls", yaml_cfg)
 vim.lsp.enable("yamlls")
+
+vim.lsp.config("cssls", {
+	settings = {
+		css = { validate = false },
+		scss = { validate = false },
+	},
+})
 
 vim.lsp.config("lua_ls", {
 	settings = {

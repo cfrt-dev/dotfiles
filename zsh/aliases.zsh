@@ -29,7 +29,7 @@ alias bat="bat --plain "
 alias сдуфк=clear
 
 # Do not care about these proxies, use them if u want
-alias oc="http_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 https_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 opencode"
+alias oc="http_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 https_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 no_proxy=localhost,127.0.0.1 opencode"
 alias yt-dlp="http_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 https_proxy=http://ix4it8YHBx:XyGyEkPTVd@senko.cfrt.dev:52218 yt-dlp"
 alias dav="deactivate"
 alias av="source ./.venv/bin/activate"

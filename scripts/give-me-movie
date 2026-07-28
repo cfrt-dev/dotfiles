@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+TOKEN=91f5a9ace1734757a191fc76fc5cad07
+
+movies=$(curl 'https://jellyfin.cfrt.dev/Users/0dbbe55ac67d4cdd98fbdfb28d53341c/Items?IncludeItemTypes=Movie&Recursive=true' -H "authorization: MediaBrowser Token=\"$TOKEN\"" -s)
+record_count=$(echo $movies | jq .TotalRecordCount)
+
+movies=$(curl "https://jellyfin.cfrt.dev/Users/0dbbe55ac67d4cdd98fbdfb28d53341c/Items?IncludeItemTypes=Movie&Recursive=true&StartIndex=1&Limit=${record_count}" -H "authorization: MediaBrowser Token=\"$TOKEN\"" -s)
+
+index=$(($RANDOM % $record_count))
+echo $movies | jq ".Items.[${index}].Name" -r
+
+id=$(echo $movies | jq ".Items.[${index}].Id" -r)
+
+xdg-open "https://jellyfin.cfrt.dev/web/#/details?id=${id}"

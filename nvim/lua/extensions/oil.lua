@@ -43,6 +43,28 @@ local function input_archive_name(default_name, extension, callback)
 	vim.cmd.startinsert()
 end
 
+local function exec_on_file()
+	local oil = require("oil")
+	local current_dir = oil.get_current_dir()
+	if not current_dir then
+		vim.notify("Cannot archive: not in a local directory", vim.log.levels.WARN)
+		return
+	end
+
+	local cursor_entry = require("oil").get_cursor_entry()
+	local full_path = current_dir .. cursor_entry.name
+
+	local opts = {
+		prompt = "Exec: ",
+		scope = "buffer",
+		completion = "file",
+	}
+	vim.ui.input(opts, function(input)
+		local command = string.format("%s %s", input, full_path)
+		print("Will exec - '" .. command .. "'")
+	end)
+end
+
 local function oil_archive_selected()
 	local oil = require("oil")
 	local current_dir = oil.get_current_dir()
@@ -86,6 +108,13 @@ local function oil_archive_selected()
 			extension = "zip",
 			command = function(archive_name)
 				return { "zip", "-r", archive_name, "--" }
+			end,
+		},
+		{
+			name = "tar",
+			extension = "tar",
+			command = function(archive_name)
+				return { "tar", "-cf", archive_name, "--" }
 			end,
 		},
 		{
@@ -204,6 +233,11 @@ require("oil").setup({
 		["gx"] = "actions.open_external",
 		["g."] = { "actions.toggle_hidden", mode = "n" },
 		["g\\"] = { "actions.toggle_trash", mode = "n" },
+		["ge"] = {
+			desc = "Execute command on file",
+			callback = exec_on_file,
+			mode = "n",
+		},
 		["ga"] = {
 			desc = "Create tar.gz archive",
 			callback = oil_archive_selected,

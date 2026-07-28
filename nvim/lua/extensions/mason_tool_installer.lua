@@ -1,5 +1,6 @@
 require("mason-tool-installer").setup({
 	ensure_installed = {
+		"biome",
 		"buf",
 		"clang-format",
 		"clangd",
@@ -20,6 +21,5 @@ require("mason-tool-installer").setup({
 		"tinymist",
 		"ts_ls",
 		"yamlls",
-		"sqruff",
 	},
 })

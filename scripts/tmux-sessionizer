@@ -5,12 +5,11 @@ folders=(
     /home
     ~
     ~/Documents
+    ~/documents
     ~/personal
     ~/wb
     ~/ctf-devel
     ~/software
-    ~/software/git
-    ~/software/libraries
     /mnt/storage
     /mnt/storage/iso
     /mnt/storage/books

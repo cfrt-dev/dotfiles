@@ -61,7 +61,6 @@ map("n", "<leader>pf", builtin.find_files)
 map("n", "<leader>pa", builtin.builtin)
 map("n", "<leader>pc", builtin.colorscheme)
 map("n", "<leader>vh", builtin.help_tags)
-map("n", "<leader>d", builtin.diagnostics)
 
 vim.api.nvim_create_autocmd("User", {
 	pattern = "TelescopePreviewerLoaded",
